@@ -1,0 +1,537 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-11-18T12:52:20.806362+00:00",
+  "items": {
+    "technologies": [
+      {
+        "name": "AWS Bedrock",
+        "category": "Cloud Services",
+        "description": "Cloud service used for AI model integration",
+        "source_location": "AI Integration",
+        "source_file": "product.md"
+      },
+      {
+        "name": "Nova Pro",
+        "category": "AI Models",
+        "description": "One of the AI models used in the AWS Bedrock integration",
+        "source_location": "AI Integration",
+        "source_file": "product.md"
+      },
+      {
+        "name": "Claude Sonnet 3.7/4",
+        "category": "AI Models",
+        "description": "One of the AI models used in the AWS Bedrock integration",
+        "source_location": "AI Integration",
+        "source_file": "product.md"
+      },
+      {
+        "name": "Nova Canvas",
+        "category": "AI Models",
+        "description": "AI model used for image generation",
+        "source_location": "AI Integration",
+        "source_file": "product.md"
+      },
+      {
+        "name": "WebSocket",
+        "category": "Technologies",
+        "description": "Technology used for real-time multiplayer communication",
+        "source_location": "Product Overview",
+        "source_file": "product.md"
+      },
+      {
+        "name": "Vue.js",
+        "category": "technologies",
+        "description": "Frontend application framework",
+        "source_location": "Root Level Organization",
+        "source_file": "structure.md"
+      },
+      {
+        "name": "Bun",
+        "category": "technologies",
+        "description": "Runtime used for the WebSocket server",
+        "source_location": "Root Level Organization",
+        "source_file": "structure.md"
+      },
+      {
+        "name": "Pinia",
+        "category": "technologies",
+        "description": "State management library",
+        "source_location": "Client Structure (`client/`)",
+        "source_file": "structure.md"
+      },
+      {
+        "name": "WebSocket",
+        "category": "technologies",
+        "description": "Communication protocol",
+        "source_location": "Server Structure (`server/`)",
+        "source_file": "structure.md"
+      },
+      {
+        "name": "Redis",
+        "category": "technologies",
+        "description": "Client integration",
+        "source_location": "Item Images Service (`item-images/`)",
+        "source_file": "structure.md"
+      },
+      {
+        "name": "CloudFormation",
+        "category": "technologies",
+        "description": "Used for Infrastructure as Code",
+        "source_location": "Infrastructure as Code",
+        "source_file": "structure.md"
+      },
+      {
+        "name": "Vitest",
+        "category": "technologies",
+        "description": "Testing framework for the client",
+        "source_location": "Testing Structure",
+        "source_file": "structure.md"
+      },
+      {
+        "name": "Vue Test Utils",
+        "category": "technologies",
+        "description": "Testing utilities for Vue.js",
+        "source_location": "Testing Structure",
+        "source_file": "structure.md"
+      },
+      {
+        "name": "Bun",
+        "category": "technologies",
+        "description": "Primary JavaScript runtime for both client and server development",
+        "source_location": "Runtime & Build System",
+        "source_file": "tech.md"
+      },
+      {
+        "name": "Docker/Podman",
+        "category": "technologies",
+        "description": "Containerized development environment with compose orchestration",
+        "source_location": "Runtime & Build System",
+        "source_file": "tech.md"
+      },
+      {
+        "name": "TypeScript",
+        "category": "technologies",
+        "description": "Used throughout the codebase for type safety",
+        "source_location": "Runtime & Build System",
+        "source_file": "tech.md"
+      },
+      {
+        "name": "Vue.js 3",
+        "category": "technologies",
+        "description": "Component-based UI framework using Composition API",
+        "source_location": "Frontend (Client)",
+        "source_file": "tech.md"
+      },
+      {
+        "name": "Pinia",
+        "category": "technologies",
+        "description": "State management for reactive game state",
+        "source_location": "Frontend (Client)",
+        "source_file": "tech.md"
+      },
+      {
+        "name": "Vite",
+        "category": "technologies",
+        "description": "Build tool and development server",
+        "source_location": "Frontend (Client)",
+        "source_file": "tech.md"
+      },
+      {
+        "name": "Vue Router",
+        "category": "technologies",
+        "description": "Client-side routing",
+        "source_location": "Frontend (Client)",
+        "source_file": "tech.md"
+      },
+      {
+        "name": "Vitest",
+        "category": "technologies",
+        "description": "Unit testing framework",
+        "source_location": "Frontend (Client)",
+        "source_file": "tech.md"
+      },
+      {
+        "name": "Bun WebSocket Server",
+        "category": "technologies",
+        "description": "Real-time bidirectional communication",
+        "source_location": "Backend (Server)",
+        "source_file": "tech.md"
+      },
+      {
+        "name": "AWS SDK",
+        "category": "technologies",
+        "description": "Integration with AWS services",
+        "source_location": "Backend (Server)",
+        "source_file": "tech.md"
+      },
+      {
+        "name": "Sharp",
+        "category": "technologies",
+        "description": "Image processing library",
+        "source_location": "Backend (Server)",
+        "source_file": "tech.md"
+      },
+      {
+        "name": "Redis",
+        "category": "technologies",
+        "description": "Caching and session management",
+        "source_location": "Backend (Server)",
+        "source_file": "tech.md"
+      },
+      {
+        "name": "Amazon Bedrock",
+        "category": "technologies",
+        "description": "AI model integration (Nova Pro, Claude Sonnet 3.7/4, Nova Canvas, Titan Text Embeddings v2)",
+        "source_location": "AWS Services",
+        "source_file": "tech.md"
+      },
+      {
+        "name": "DynamoDB",
+        "category": "technologies",
+        "description": "Game state and inventory persistence",
+        "source_location": "AWS Services",
+        "source_file": "tech.md"
+      },
+      {
+        "name": "Amazon Cognito",
+        "category": "technologies",
+        "description": "User authentication and authorization",
+        "source_location": "AWS Services",
+        "source_file": "tech.md"
+      },
+      {
+        "name": "S3 + CloudFront",
+        "category": "technologies",
+        "description": "Asset storage and content delivery",
+        "source_location": "AWS Services",
+        "source_file": "tech.md"
+      },
+      {
+        "name": "MemoryDB",
+        "category": "technologies",
+        "description": "Vector database for image matching",
+        "source_location": "AWS Services",
+        "source_file": "tech.md"
+      },
+      {
+        "name": "ESLint",
+        "category": "technologies",
+        "description": "Linting with Vue and TypeScript configurations",
+        "source_location": "Code Quality",
+        "source_file": "tech.md"
+      },
+      {
+        "name": "Prettier",
+        "category": "technologies",
+        "description": "Code formatting",
+        "source_location": "Code Quality",
+        "source_file": "tech.md"
+      },
+      {
+        "name": "Vue 3",
+        "category": "technologies",
+        "description": "A JavaScript framework used for building the client application.",
+        "source_location": "Technology Stack",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "Vite",
+        "category": "technologies",
+        "description": "A build tool used for the client project.",
+        "source_location": "Technology Stack",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "Vue Router 4",
+        "category": "technologies",
+        "description": "A routing library for Vue.js applications.",
+        "source_location": "Technology Stack",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "Pinia",
+        "category": "technologies",
+        "description": "A state management library for Vue.js applications.",
+        "source_location": "Technology Stack",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "TypeScript",
+        "category": "technologies",
+        "description": "A typed superset of JavaScript used in the client project.",
+        "source_location": "Technology Stack",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "Vue JSX",
+        "category": "technologies",
+        "description": "A syntax extension for Vue.js allowing JSX in Vue components.",
+        "source_location": "Technology Stack",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "Vitest",
+        "category": "technologies",
+        "description": "A testing framework used for client unit tests with jsdom and Vue Test Utils.",
+        "source_location": "Technology Stack",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "ESLint",
+        "category": "technologies",
+        "description": "A linting tool with configurations for Vue, TypeScript, and Vitest.",
+        "source_location": "Technology Stack",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "Prettier",
+        "category": "technologies",
+        "description": "A code formatter used in the client project.",
+        "source_location": "Technology Stack",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "Bun",
+        "category": "technologies",
+        "description": "A runtime and package manager used in the root and client projects.",
+        "source_location": "Technology Stack",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "AWS SDK DynamoDB client",
+        "category": "technologies",
+        "description": "A client library for interacting with Amazon DynamoDB.",
+        "source_location": "Technology Stack",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "Docker Compose",
+        "category": "technologies",
+        "description": "A tool for defining and running multi-container Docker applications.",
+        "source_location": "Technology Stack",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "Amazon DynamoDB Local",
+        "category": "technologies",
+        "description": "A local version of Amazon DynamoDB used in the development environment.",
+        "source_location": "Technology Stack",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "AWS CloudFormation",
+        "category": "technologies",
+        "description": "An Infrastructure as Code service used for deploying the client application.",
+        "source_location": "Technology Stack",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "S3",
+        "category": "technologies",
+        "description": "An object storage service used for hosting static files.",
+        "source_location": "Technology Stack",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "CloudFront",
+        "category": "technologies",
+        "description": "A content delivery network service used for serving the client application.",
+        "source_location": "Technology Stack",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "Lambda@Edge",
+        "category": "technologies",
+        "description": "A serverless compute service used for edge computing, specifically for basic authentication.",
+        "source_location": "Technology Stack",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "AWS CLI",
+        "category": "technologies",
+        "description": "A command-line interface for interacting with AWS services, used in the deployment script.",
+        "source_location": "Technology Stack",
+        "source_file": "copilot-instructions.md"
+      }
+    ],
+    "architecture": [
+      {
+        "name": "Client-Server Architecture",
+        "category": "Architecture",
+        "description": "WebSocket-based architecture for real-time multiplayer gameplay",
+        "source_location": "Product Overview",
+        "source_file": "product.md"
+      },
+      {
+        "name": "System-based Architecture",
+        "category": "architecture",
+        "description": "Independent systems communicate via events",
+        "source_location": "Frontend Systems Architecture",
+        "source_file": "structure.md"
+      },
+      {
+        "name": "Socket System",
+        "category": "architecture",
+        "description": "Manages WebSocket communication",
+        "source_location": "Frontend Systems Architecture",
+        "source_file": "structure.md"
+      },
+      {
+        "name": "Physics System",
+        "category": "architecture",
+        "description": "Handles collision detection and movement",
+        "source_location": "Frontend Systems Architecture",
+        "source_file": "structure.md"
+      },
+      {
+        "name": "Game Object System",
+        "category": "architecture",
+        "description": "Tracks on-screen objects",
+        "source_location": "Frontend Systems Architecture",
+        "source_file": "structure.md"
+      },
+      {
+        "name": "Item/Inventory Systems",
+        "category": "architecture",
+        "description": "Manage game items and storage",
+        "source_location": "Frontend Systems Architecture",
+        "source_file": "structure.md"
+      },
+      {
+        "name": "Message-Driven Communication",
+        "category": "architecture",
+        "description": "WebSocket messages follow consistent naming patterns, server handlers organized by message type, event-driven frontend updates",
+        "source_location": "Message-Driven Communication",
+        "source_file": "structure.md"
+      },
+      {
+        "name": "Infrastructure as Code",
+        "category": "architecture",
+        "description": "Each service has its own `iac/` directory with CloudFormation YAML templates, deployment scripts, and environment configurations",
+        "source_location": "Infrastructure as Code",
+        "source_file": "structure.md"
+      },
+      {
+        "name": "Browser",
+        "category": "architecture",
+        "description": "The entry point for the application, interacting with the Vue/Vite client.",
+        "source_location": "System Architecture",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "Vue/Vite client",
+        "category": "architecture",
+        "description": "The frontend application built with Vue 3 and Vite, communicating with a WebSocket endpoint.",
+        "source_location": "System Architecture",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "WebSocket endpoint",
+        "category": "architecture",
+        "description": "A communication channel configured through VITE_WS_URL, connecting the client to the backend server.",
+        "source_location": "System Architecture",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "Backend server",
+        "category": "architecture",
+        "description": "A server component (not present in the checkout) that interacts with DynamoDB and the WebSocket endpoint.",
+        "source_location": "System Architecture",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "DynamoDB",
+        "category": "architecture",
+        "description": "A NoSQL database service used for data persistence, configured locally with DynamoDB Local.",
+        "source_location": "System Architecture",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "CloudFront distribution",
+        "category": "architecture",
+        "description": "A content delivery network distribution serving the static client application and handling WebSocket-related headers.",
+        "source_location": "System Architecture",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "Lambda@Edge basic authentication",
+        "category": "architecture",
+        "description": "A Lambda function associated with CloudFront to challenge requests with HTTP Basic authentication.",
+        "source_location": "System Architecture",
+        "source_file": "copilot-instructions.md"
+      }
+    ],
+    "rules": [
+      {
+        "name": "kebab-case",
+        "category": "rules",
+        "description": "For file names, component names, and message types",
+        "source_location": "File Naming Conventions",
+        "source_file": "structure.md"
+      },
+      {
+        "name": "camelCase",
+        "category": "rules",
+        "description": "For JavaScript/TypeScript variables and functions",
+        "source_location": "File Naming Conventions",
+        "source_file": "structure.md"
+      },
+      {
+        "name": "PascalCase",
+        "category": "rules",
+        "description": "For Vue components and TypeScript interfaces",
+        "source_location": "File Naming Conventions",
+        "source_file": "structure.md"
+      },
+      {
+        "name": ".ts/.js extensions",
+        "category": "rules",
+        "description": "TypeScript preferred, JavaScript for legacy word lists",
+        "source_location": "File Naming Conventions",
+        "source_file": "structure.md"
+      },
+      {
+        "name": "TypeScript and Vue single-file components",
+        "category": "rules",
+        "description": "Use TypeScript and Vue single-file components for client-side development.",
+        "source_location": "Coding Conventions and Development Guidelines",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "Code formatting",
+        "category": "rules",
+        "description": "Use two spaces, LF line endings, UTF-8, a final newline, no semicolons, single quotes, and a Prettier print width of 100.",
+        "source_location": "Coding Conventions and Development Guidelines",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "Path alias",
+        "category": "rules",
+        "description": "Use the `@/` alias for paths under `client/src/`.",
+        "source_location": "Coding Conventions and Development Guidelines",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "ESLint configuration",
+        "category": "rules",
+        "description": "Apply ESLint rules covering TypeScript, TSX, and Vue files, with specific configurations for Vue and Vitest.",
+        "source_location": "Coding Conventions and Development Guidelines",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "Unit testing",
+        "category": "rules",
+        "description": "Use Vitest with jsdom and Vue Test Utils for unit testing.",
+        "source_location": "Coding Conventions and Development Guidelines",
+        "source_file": "copilot-instructions.md"
+      },
+      {
+        "name": "Contribution guidelines",
+        "category": "rules",
+        "description": "Work against the latest `main`, check for existing issues/PRs, discuss significant work in an issue, keep pull requests focused, run local tests, and use clear commit messages.",
+        "source_location": "Coding Conventions and Development Guidelines",
+        "source_file": "copilot-instructions.md"
+      }
+    ]
+  }
+}
