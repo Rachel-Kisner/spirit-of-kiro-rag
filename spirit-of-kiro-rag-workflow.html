@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spirit of Kiro – RAG Workflow</title>
+<style>
+  :root { --ink:#182230; --muted:#526174; --line:#8492a6; --bg:#f4f7fb; --blue:#e8f1ff; --blue-border:#3975c6; --green:#e8f7ef; --green-border:#27845b; --amber:#fff4dc; --amber-border:#bd8424; --red:#fff0ef; --red-border:#c65a52; }
+  * { box-sizing:border-box; }
+  body { margin:0; padding:32px 18px; background:var(--bg); color:var(--ink); font:15px/1.45 system-ui,-apple-system,"Segoe UI",Arial,sans-serif; }
+  .wrap { max-width:1250px; margin:auto; }
+  h1 { text-align:center; margin:0 0 6px; font-size:30px; }
+  .subtitle { text-align:center; color:var(--muted); margin:0 0 28px; }
+  .node { background:white; border:2px solid #cbd5e1; border-radius:12px; padding:13px 16px; text-align:center; box-shadow:0 2px 7px #1822300c; }
+  .node strong { display:block; font-size:16px; }
+  .owner { display:block; color:var(--muted); font-size:12px; margin-top:4px; }
+  .detail { display:block; color:#35445a; font-size:13px; margin-top:5px; }
+  .input { max-width:480px; margin:auto; border-color:#64748b; }
+  .validation { max-width:560px; margin:auto; border-color:var(--amber-border); background:var(--amber); }
+  .router { max-width:560px; margin:auto; border-color:#64748b; }
+  .arrow { text-align:center; color:var(--line); font-size:25px; line-height:1.2; margin:5px 0; }
+  .decision { max-width:560px; margin:auto; border:2px dashed var(--amber-border); background:#fffaf0; border-radius:10px; padding:10px; text-align:center; font-weight:700; }
+  .branch-label { text-align:center; color:var(--muted); font-size:13px; font-weight:700; margin:8px 0; }
+  .branches { display:grid; grid-template-columns:1fr 1fr; gap:22px; align-items:start; margin-top:8px; }
+  .branch { border-radius:16px; padding:16px; border:2px solid; }
+  .semantic { background:#f0f6ff; border-color:var(--blue-border); }
+  .structured { background:#effaf4; border-color:var(--green-border); }
+  .branch h2 { text-align:center; font-size:20px; margin:0 0 5px; }
+  .branch .branch-intro { text-align:center; color:var(--muted); font-size:12px; margin:0 0 14px; }
+  .semantic .node { border-color:#9bbbe8; }
+  .structured .node { border-color:#9acdb1; }
+  .semantic .decision { border-color:var(--blue-border); background:#f8fbff; }
+  .structured .decision { border-color:var(--green-border); background:#f8fffa; }
+  .small { font-size:12px; color:var(--muted); text-align:center; margin:7px 0; }
+  .loop { border:2px dashed var(--amber-border); background:#fff9eb; border-radius:10px; padding:10px; text-align:center; margin-top:9px; }
+  .loop strong { display:block; }
+  .outputs { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:9px; }
+  .output { background:white; border:1px solid #cbd5e1; border-radius:9px; padding:10px; text-align:center; font-size:13px; }
+  .final { max-width:560px; margin:18px auto 0; background:#e9eef5; border:2px solid #64748b; }
+  .notes { margin:26px auto 0; background:white; border:1px solid #d7dee8; border-radius:12px; padding:16px 20px; }
+  .notes h3 { margin:0 0 8px; font-size:16px; }
+  .notes ul { margin:6px 0 0; padding-left:20px; color:#35445a; }
+  .notes li { margin:5px 0; }
+  .footer { text-align:center; color:var(--muted); font-size:12px; margin-top:18px; }
+  @media (max-width:760px) { .branches { grid-template-columns:1fr; } h1 {font-size:24px;} body {padding:20px 10px;} }
+  @media print { body { background:white; padding:8mm; } .node { box-shadow:none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Spirit of Kiro – RAG Workflow</h1>
+  <p class="subtitle">Workflow stages, validation, retrieval paths, retry handling, and component ownership</p>
+
+  <div class="node input">
+    <strong>1. User Question</strong>
+    <span class="owner">Owner: User</span>
+    <span class="detail">A natural-language question enters the workflow.</span>
+  </div>
+  <div class="arrow">↓</div>
+  <div class="node validation">
+    <strong>2. Input Validation</strong>
+    <span class="owner">Owner: validators.py · validate_query()</span>
+    <span class="detail">Checks whether the submitted question is valid.</span>
+  </div>
+  <div class="arrow">↓</div>
+  <div class="decision">Valid input?</div>
+  <div class="outputs" style="max-width:560px;margin:9px auto 4px">
+    <div class="output" style="border-color:var(--red-border);background:var(--red)"><strong>No</strong><br>StopEvent: “Please enter a valid question.”<br><span class="owner">Workflow ends</span></div>
+    <div class="output" style="border-color:var(--green-border);background:var(--green)"><strong>Yes</strong><br>Initialize workflow state<br><span class="owner">LlamaIndex Context store</span></div>
+  </div>
+  <div class="arrow">↓</div>
+  <div class="node router">
+    <strong>3. Question Routing</strong>
+    <span class="owner">Owner: router.py · select_route() (invoked by LlamaIndex Workflow)</span>
+    <span class="detail">Selects the Semantic or Structured retrieval path.</span>
+  </div>
+
+  <div class="branches">
+    <section class="branch semantic">
+      <h2>4A. Semantic Route</h2>
+      <p class="branch-intro">For questions requiring meaning, explanation, or comparison</p>
+      <div class="node">
+        <strong>Semantic Retrieval</strong>
+        <span class="owner">LlamaIndex Retriever</span>
+        <span class="detail">Sends the query to the vector store.</span>
+      </div>
+      <div class="arrow">↓</div>
+      <div class="node">
+        <strong>Pinecone Vector Search</strong>
+        <span class="owner">Pinecone</span>
+        <span class="detail">Searches stored document embeddings and returns relevant Nodes with similarity scores.</span>
+      </div>
+      <div class="arrow">↓</div>
+      <div class="node">
+        <strong>5A. Retrieval Validation</strong>
+        <span class="owner">validators.py · validate_retrieved_nodes() + validate_retrieval_confidence()</span>
+        <span class="detail">Checks that Nodes were retrieved and that their confidence is sufficient.</span>
+      </div>
+      <div class="arrow">↓</div>
+      <div class="decision">Relevant Nodes and sufficient confidence?</div>
+      <div class="outputs">
+        <div class="output"><strong>Yes</strong><br>Continue to answer synthesis</div>
+        <div class="output"><strong>No</strong><br>Check retry limit</div>
+      </div>
+      <div class="loop">
+        <strong>6A. Retry / Query Rewriting</strong>
+        <span class="owner">LLM + LlamaIndex Workflow</span>
+        <span class="detail">If retries remain (maximum 2 additional attempts), the LLM rewrites the original question. RetryEvent triggers another Pinecone retrieval and validation cycle.</span>
+      </div>
+      <div class="small">If the retry limit is reached, or no different query can be generated, the workflow returns an explanatory StopEvent.</div>
+      <div class="arrow">↓</div>
+      <div class="node">
+        <strong>7A. Answer Synthesis</strong>
+        <span class="owner">LlamaIndex Response Synthesizer + LLM</span>
+        <span class="detail">Generates an answer using the validated retrieved Nodes and the user's query.</span>
+      </div>
+    </section>
+
+    <section class="branch structured">
+      <h2>4B. Structured Route</h2>
+      <p class="branch-intro">For questions asking for specific records, categories, keywords, or counts</p>
+      <div class="node">
+        <strong>Structured Query Generation</strong>
+        <span class="owner">structured_retriever.py + LLM</span>
+        <span class="detail">Converts the user's question into a schema-based structured query.</span>
+      </div>
+      <div class="arrow">↓</div>
+      <div class="node">
+        <strong>JSON Retrieval</strong>
+        <span class="owner">structured_retriever.py + Python</span>
+        <span class="detail">Executes the structured query against extracted_data.json and returns matching records.</span>
+      </div>
+      <div class="arrow">↓</div>
+      <div class="decision">Any matching records?</div>
+      <div class="outputs">
+        <div class="output"><strong>No</strong><br>StopEvent: no matching structured information</div>
+        <div class="output"><strong>Yes</strong><br>Continue to answer generation</div>
+      </div>
+      <div class="arrow">↓</div>
+      <div class="node">
+        <strong>Structured Answer Generation</strong>
+        <span class="owner">Python or LLM</span>
+        <span class="detail">Count questions: Python counts matching records. Other questions: the LLM answers using the retrieved JSON records only.</span>
+      </div>
+      <div class="small">This route checks whether records exist. The separate Node/confidence validation and retry mechanism are implemented only in the semantic route.</div>
+    </section>
+  </div>
+
+  <div class="arrow">↓</div>
+  <div class="node final">
+    <strong>8. Final Result – StopEvent</strong>
+    <span class="owner">LlamaIndex Workflow</span>
+    <span class="detail">Returns the generated answer or the relevant validation / no-results message to the caller.</span>
+  </div>
+
+  <div class="notes">
+    <h3>Component responsibilities</h3>
+    <ul>
+      <li><strong>LlamaIndex Workflow:</strong> Orchestrates steps, events, and workflow state through Context.</li>
+      <li><strong>Pinecone:</strong> Stores document vectors and performs vector similarity search.</li>
+      <li><strong>LlamaIndex Retriever:</strong> Connects the semantic retrieval step to the vector store.</li>
+      <li><strong>Cohere:</strong> Creates document embeddings during the preparation/indexing stage; it is not the retrieval database.</li>
+      <li><strong>validators.py:</strong> Validates the input and, on the semantic path, the retrieved Nodes and retrieval confidence.</li>
+      <li><strong>LLM:</strong> Supports routing (depending on router.py implementation), query rewriting, structured-query generation, and answer generation.</li>
+      <li><strong>Response Synthesizer:</strong> Uses the retrieved semantic Nodes to synthesize a grounded response with the LLM.</li>
+      <li><strong>Python:</strong> Executes structured JSON filtering and handles count questions.</li>
+    </ul>
+  </div>
+  <p class="footer">Based on the supplied workflow.py implementation. Cohere embedding generation belongs to the preparation/indexing stage, before this runtime workflow.</p>
+</div>
+</body>
+</html>
+
+<!-- Injection By NetFree -->
+<script src="https://netfree.link/injection-script/note-in-site.js" type="text/javascript" async  id="netfree-note-site" jsondata="%7B%22noteSite%22:%22%D7%9B%D7%93%D7%99%20%D7%A9%D7%94%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA%20%D7%91%D7%90%D7%AA%D7%A8%20%D7%94%D7%96%D7%94%20%D7%99%D7%97%D7%96%D7%A8%D7%95%20%D7%9E%D7%91%D7%93%D7%99%D7%A7%D7%94%2C%20%D7%99%D7%A9%20%D7%9C%D7%94%D7%92%D7%93%D7%99%D7%A8%20%5C%22%D7%90%D7%A4%D7%A9%D7%A8%20%D7%9C%D7%A9%D7%9C%D7%95%D7%97%20%D7%9C%D7%91%D7%93%D7%99%D7%A7%D7%94%20%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA%20%D7%91%D7%90%D7%AA%D7%A8%D7%99%D7%9D%20%D7%A4%D7%A8%D7%98%D7%99%D7%99%D7%9D%2C%20%D7%91%D7%9E%D7%A7%D7%95%D7%9D%20%D7%9C%D7%97%D7%A1%D7%95%D7%9D%20%D7%90%D7%95%D7%AA%D7%9F%5C%22%20%D7%91%D7%94%D7%92%D7%93%D7%A8%D7%95%D7%AA%20%D7%A1%D7%99%D7%A0%D7%95%D7%9F%20%5B%5B%D7%A6%D7%90%D7%98_AI_%D7%91%D7%A0%D7%98%D7%A4%D7%A8%D7%99%7C%D7%94%D7%99%D7%9B%D7%A0%D7%A1%D7%95%20%D7%9C%D7%9B%D7%90%D7%9F%20%D7%9C%D7%94%D7%A1%D7%91%D7%A8%20%D7%9E%D7%A4%D7%95%D7%A8%D7%98%5D%5D%22%2C%22noteSiteEn%22:%22For%20images%20on%20this%20website%20to%20work%20you%20need%20to%20set%20%5C%22Allow%20images%20on%20private%20sites%20to%20be%20sent%20for%20review%2C%20instead%20of%20blocking%20them%5C%22%20%5B%5BAI_Chats_in_NetFree%7CClick%20here%20to%20read%20more%5D%5D%22%7D"></script><script src="//netfree.link/injection-script/go-payment.js" type="text/javascript" async ></script>
+<script src="//netfree.link/injection-script/popup-card-init.js" type="text/javascript" async ></script>
